@@ -8,6 +8,10 @@
     "type": "git",
     "url": "git+https://github.com/fulg0re/library-online.git"
   },
+  "jest": {
+    "collectCoverage": true,
+    "displayName": { "name": "library-online", "color": "cyan" }
+  },
   "author": "Pavlo Denys",
   "license": "ISC",
   "bugs": {
