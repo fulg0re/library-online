@@ -1,0 +1,22 @@
+{
+  "name": "library-online",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fulg0re/library-online.git"
+  },
+  "author": "Pavlo Denys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fulg0re/library-online/issues"
+  },
+  "homepage": "https://github.com/fulg0re/library-online#readme",
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "jest": "^28.1.3",
+    "prettier": "^2.7.1"
+  }
+}
