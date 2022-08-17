@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const mockData = [
+import { collectionNames } from '../../constants/collection.js';
+
+export const dataSamples = [
   {
-    collection: 'books',
+    collection: collectionNames.books,
     data: [
       {
         _id: uuidv4(),

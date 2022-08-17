@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "app": "nodemon ./src/index.js"
+    "app": "nodemon ./src/index.js",
+    "dbFill": "node ./src/mongo/samples/fill-db.js"
   },
   "repository": {
     "type": "git",
