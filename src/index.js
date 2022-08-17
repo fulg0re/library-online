@@ -6,11 +6,12 @@ import { routerConfigs } from './router-configs.js';
 import {
   SERVER_URL,
   SERVER_PORT,
-} from './configs/server.js';
+} from '../temp-configs/server.js';
 
 const app = express();
 
 app.set('view engine', 'ejs');
+app.set('views', './src/views');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
