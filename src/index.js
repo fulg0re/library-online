@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { logInfo } from './utils/log.js';
+import { logError, logInfo } from './utils/log.js';
 import { routerConfigs } from './router-configs.js';
 import { mongoConnect } from './mongo/connection.js';
 import {
@@ -23,8 +23,12 @@ routerConfigs.map(({
   handleFunction,
 }) => app[method](route, handleFunction));
 
-mongoConnect(() => {
+try {
+  await mongoConnect();
+
   app.listen(SERVER_PORT, () => {
     logInfo(`Library Online >> ${SERVER_URL.local}:${SERVER_PORT}`);
   });
-});
+} catch (error) {
+  logError(error.stack);
+}

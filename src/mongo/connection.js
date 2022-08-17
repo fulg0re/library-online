@@ -1,24 +1,39 @@
-import mongoose from 'mongoose';
+import { MongoClient } from 'mongodb';
 
-import { MONGO_DB_NAME } from '../../temp-configs/server.js';
+import { logInfo } from '../utils/log.js';
+import { mockData } from './mock-data.js';
 import {
-  logInfo,
-  logError,
-} from '../utils/log.js';
+  MONGO_URL,
+  MONGO_DB_NAME,
+} from '../../temp-configs/server.js';
 
-mongoose.connect(`mongodb://localhost/${MONGO_DB_NAME}`, { useNewUrlParser: true });
+const client = new MongoClient(MONGO_URL);
 
-// todo @Denys: refactor this and make proper error handler
-export const mongoConnect = (callback) => {
+const fillDBWithMockData = async () => {
+  const db = client.db(MONGO_DB_NAME);
+
+  await db.dropDatabase();
+
+  mockData.map(async ({ collection, data }) => {
+    await db.collection(collection).insertMany(data);
+  });
+
+  return null;
+};
+
+export const mongoConnect = async () => {
   try {
-    mongoose.connection.on('error', (error) => {
-      logError(`'connection error: '${error}`);
-    });
-    mongoose.connection.once('open', () => {
-      logInfo('Connected to mongo DB successfully...');
-      callback();
-    });
-  } catch (err) {
-    logError(err);
+    await client.connect();
+
+    logInfo('Connected to mongo successfully');
+
+    // todo: use this only for local testing to fill DB with mocked data
+    // await fillDBWithMockData();
+
+    return null;
+  } catch (error) {
+    await client.close();
+
+    throw error;
   }
 };
