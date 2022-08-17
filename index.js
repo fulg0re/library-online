@@ -3,6 +3,10 @@ import bodyParser from 'body-parser';
 
 import { logInfo } from './utils/log.js';
 import { routerConfigs } from './router-configs.js';
+import {
+  SERVER_URL,
+  SERVER_PORT,
+} from './configs/server.js';
 
 const app = express();
 
@@ -17,6 +21,6 @@ routerConfigs.map(({
   handleFunction,
 }) => app[method](route, handleFunction));
 
-app.listen(3000, () => {
-  logInfo('Library Online >> http://localhost:3000');
+app.listen(SERVER_PORT, () => {
+  logInfo(`Library Online >> ${SERVER_URL.local}:${SERVER_PORT}`);
 });
