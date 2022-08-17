@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 
 import { logInfo } from './utils/log.js';
 import { routerConfigs } from './router-configs.js';
+import { mongoConnect } from './mongo/connection.js';
 import {
   SERVER_URL,
   SERVER_PORT,
@@ -22,6 +23,8 @@ routerConfigs.map(({
   handleFunction,
 }) => app[method](route, handleFunction));
 
-app.listen(SERVER_PORT, () => {
-  logInfo(`Library Online >> ${SERVER_URL.local}:${SERVER_PORT}`);
+mongoConnect(() => {
+  app.listen(SERVER_PORT, () => {
+    logInfo(`Library Online >> ${SERVER_URL.local}:${SERVER_PORT}`);
+  });
 });
