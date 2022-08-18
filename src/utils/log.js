@@ -1,16 +1,14 @@
-import chalk from 'chalk';
-
-export const logInfo = (text) => {
-  // eslint-disable-next-line no-console
-  console.log(text);
+const consoleMethods = {
+  log: 'log',
+  warn: 'warn',
+  error: 'error',
 };
 
-export const logWarning = (text) => {
-  // eslint-disable-next-line no-console
-  console.warn(chalk.yellow(text));
-};
+// eslint-disable-next-line no-console
+const log = (method) => (text) => console[method](text);
 
-export const logError = (text) => {
-  // eslint-disable-next-line no-console
-  console.error(chalk.red(text));
-};
+export const logInfo = log(consoleMethods.log);
+
+export const logWarning = log(consoleMethods.warn);
+
+export const logError = log(consoleMethods.error);
