@@ -18,6 +18,10 @@ export const dataSamples = [
         _id: uuidv4(),
         name: 'Some Book 3',
       },
+      {
+        _id: uuidv4(),
+        name: 'Some Book 4',
+      },
     ],
   },
 ];
